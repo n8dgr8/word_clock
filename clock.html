@@ -1,0 +1,493 @@
+<html>
+
+<head>
+
+<style>
+
+body {
+	background-color: black;
+}
+
+table {
+	background:
+		-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, .15)), to(rgba(0, 0, 0, .25))),
+		-webkit-gradient(linear, left top, right bottom, color-stop(0, rgba(255, 255, 255, 0)), color-stop(0.5, rgba(255, 255, 255, .15)), color-stop(0.501, rgba(255, 255, 255, 0)), color-stop(1, rgba(255, 255, 255, 0)));
+
+}
+
+td {
+	text-align: center;
+	width: 1.2em;
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 36px;
+	color: dimgrey;
+}
+
+.selected {
+	color: white;
+	text-shadow: 0 0 150px white, 0 0 60px yellow, 0 0 10px white;
+}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+<script type="text/javascript">
+
+function updateClock() {
+
+	$( 'td' ).removeClass( 'selected' );
+
+	$( '.it' ).addClass( 'selected' );
+	$( '.is' ).addClass( 'selected' );
+
+	var now = new Date();
+
+	var minutes = now.getMinutes();
+
+	var hours = now.getHours();
+
+	$( '.oclock' ).addClass( 'selected' );
+
+	//	Set up past / to
+
+	if( ( 5 <= minutes ) && ( minutes < 35 ) ) {
+		$( '.past' ).addClass( 'selected' );
+	}
+	else if( minutes >= 5 ) {
+		$( '.to' ).addClass( 'selected' );
+		hours += 1;
+	}
+
+	if( ( ( 5 <= minutes ) && ( minutes < 10 ) ) || ( ( 55 <= minutes ) && ( minutes < 60 ) ) ) {
+		$( '.minute.5' ).addClass( 'selected' );
+	}
+
+	if( ( ( 10 <= minutes ) && ( minutes < 15 ) ) || ( ( 50 <= minutes ) && ( minutes < 55 ) ) ) {
+		$( '.minute.10' ).addClass( 'selected' );
+	}
+
+	if( ( ( 15 <= minutes ) && ( minutes < 20 ) ) || ( ( 45 <= minutes ) && ( minutes < 50 ) ) ) {
+		$( '.a' ).addClass( 'selected' );
+		$( '.minute.15' ).addClass( 'selected' );
+	}
+
+	if( ( ( 20 <= minutes ) && ( minutes < 25 ) ) || ( ( 40 <= minutes ) && ( minutes < 45 ) ) ) {
+		$( '.minute.20' ).addClass( 'selected' );
+	}
+
+	if( ( ( 25 <= minutes ) && ( minutes < 30 ) ) || ( ( 35 <= minutes ) && ( minutes < 40 ) ) ) {
+		$( '.minute.25' ).addClass( 'selected' );
+	}
+
+	if( ( 30 <= minutes ) && ( minutes < 35 ) ) {
+		$( '.minute.30' ).addClass( 'selected' );
+	}
+
+	//	Hours
+	//	Easier!
+
+	if( hours > 12 ) {
+		hours = hours - 12;
+	}
+
+	$( '.hour.' + hours ).addClass( 'selected' );	
+
+}
+
+function clock() {
+
+	function ticktock() {
+
+		updateClock();
+
+		var current_time = new Date();
+
+		setTimeout( ticktock, 1000 * ( 60 * ( 4 - ( current_time.getMinutes() % 5 ) ) + ( 60 - current_time.getSeconds() ) ) );
+
+	}
+
+	ticktock();
+
+}
+
+$( function() {
+
+	updateClock();
+
+	clock();
+
+} );
+</script>
+
+</head>
+
+<body>
+
+<center>
+
+<br/>
+<br/>
+<br/>
+
+
+<table>
+	<tr>
+		<td class="it">
+			I
+		</td>
+		<td class="it">
+			T
+		</td>
+		<td>
+			L
+		</td>
+		<td class="is">
+			I
+		</td>
+		<td class="is">
+			S
+		</td>
+		<td>
+			A
+		</td>
+		<td>
+			S
+		</td>
+		<td>
+			T
+		</td>
+		<td>
+			I
+		</td>
+		<td>
+			M
+		</td>
+		<td>
+			E
+		</td>
+	</tr>
+	<tr>
+		<td class="a">
+			A
+		</td>
+		<td>
+			C
+		</td>
+		<td class="minute 15">
+			Q
+		</td>
+		<td class="minute 15">
+			U
+		</td>
+		<td class="minute 15">
+			A
+		</td>
+		<td class="minute 15">
+			R
+		</td>
+		<td class="minute 15">
+			T
+		</td>
+		<td class="minute 15">
+			E
+		</td>
+		<td class="minute 15">
+			R
+		</td>
+		<td>
+			D
+		</td>
+		<td>
+			C
+		</td>
+	</tr>
+	<tr>
+		<td class="minute 20 25">
+			T
+		</td>
+		<td class="minute 20 25">
+			W
+		</td>
+		<td class="minute 20 25">
+			E
+		</td>
+		<td class="minute 20 25">
+			N
+		</td>
+		<td class="minute 20 25">
+			T
+		</td>
+		<td class="minute 20 25">
+			Y
+		</td>
+		<td class="minute 5 25">
+			F
+		</td>
+		<td class="minute 5 25">
+			I
+		</td>
+		<td class="minute 5 25">
+			V
+		</td>
+		<td class="minute 5 25">
+			E
+		</td>
+		<td>
+			X
+		</td>
+	</tr>
+	<tr>
+		<td class="minute 30">
+			H
+		</td>
+		<td class="minute 30">
+			A
+		</td>
+		<td class="minute 30">
+			L
+		</td>
+		<td class="minute 30">
+			F
+		</td>
+		<td>
+			B
+		</td>
+		<td class="minute 10">
+			T
+		</td>
+		<td class="minute 10">
+			E
+		</td>
+		<td class="minute 10">
+			N
+		</td>
+		<td>
+			F
+		</td>
+		<td class="to">
+			T
+		</td>
+		<td class="to">
+			O
+		</td>
+	</tr>
+	<tr>
+		<td class="past">
+			P
+		</td>
+		<td class="past">
+			A
+		</td>
+		<td class="past">
+			S
+		</td>
+		<td class="past">
+			T
+		</td>
+		<td>
+			E
+		</td>
+		<td>
+			R
+		</td>
+		<td>
+			U
+		</td>
+		<td class="hour 9">
+			N
+		</td>
+		<td class="hour 9">
+			I
+		</td>
+		<td class="hour 9">
+			N
+		</td>
+		<td class="hour 9">
+			E
+		</td>
+	</tr>
+	<tr>
+		<td class="hour 1">
+			O
+		</td>
+		<td class="hour 1">
+			N
+		</td>
+		<td class="hour 1">
+			E
+		</td>
+		<td class="hour 6">
+			S
+		</td>
+		<td class="hour 6">
+			I
+		</td>
+		<td class="hour 6">
+			X
+		</td>
+		<td class="hour 3">
+			T
+		</td>
+		<td class="hour 3">
+			H
+		</td>
+		<td class="hour 3">
+			R
+		</td>
+		<td class="hour 3">
+			E
+		</td>
+		<td class="hour 3">
+			E
+		</td>
+	</tr>
+	<tr>
+		<td class="hour 4">
+			F
+		</td>
+		<td class="hour 4">
+			O
+		</td>
+		<td class="hour 4">
+			U
+		</td>
+		<td class="hour 4">
+			R
+		</td>
+		<td class="">
+			T
+		</td>
+		<td class="">
+			I
+		</td>
+		<td class="">
+			V
+		</td>
+		<td class="">
+			E
+		</td>
+		<td class="hour 2">
+			T
+		</td>
+		<td class="hour 2">
+			W
+		</td>
+		<td class="hour 2">
+			O
+		</td>
+	</tr>
+	<tr>
+
+		<td class="hour 8">
+			E
+		</td>
+		<td class="hour 8">
+			I
+		</td>
+		<td class="hour 8">
+			G
+		</td>
+		<td class="hour 8">
+			H
+		</td>
+		<td class="hour 8">
+			T
+		</td>
+		<td class="hour 11">
+			E
+		</td>
+		<td class="hour 11">
+			L
+		</td>
+		<td class="hour 11">
+			E
+		</td>
+		<td class="hour 11">
+			V
+		</td>
+		<td class="hour 11">
+			E
+		</td>
+		<td class="hour 11">
+			N
+		</td>
+	</tr>
+	<tr>
+		<td class="hour 7">
+			S
+		</td>
+		<td class="hour 7">
+			E
+		</td>
+		<td class="hour 7">
+			V
+		</td>
+		<td class="hour 7">
+			E
+		</td>
+		<td class="hour 7">
+			N
+		</td>
+		<td class="hour 0 12">
+			T
+		</td>
+		<td class="hour 0 12">
+			W
+		</td>
+		<td class="hour 0 12">
+			E
+		</td>
+		<td class="hour 0 12">
+			L
+		</td>
+		<td class="hour 0 12">
+			V
+		</td>
+		<td class="hour 0 12">
+			E
+		</td>
+	</tr>
+	<tr>
+		<td class="hour 10">
+			T
+		</td>
+		<td class="hour 10">
+			E
+		</td>
+		<td class="hour 10">
+			N
+		</td>
+		<td class="">
+			S
+		</td>
+		<td class="">
+			E
+		</td>
+		<td class="oclock">
+			O
+		</td>
+		<td class="oclock">
+			C
+		</td>
+		<td class="oclock">
+			L
+		</td>
+		<td class="oclock">
+			O
+		</td>
+		<td class="oclock">
+			C
+		</td>
+		<td class="oclock">
+			K
+		</td>
+	</tr>
+
+</table>
+
+</center>
+
+</body>
